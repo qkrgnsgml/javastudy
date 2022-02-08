@@ -20,7 +20,7 @@ public class main {
 
         //strStream.forEach(System.out::println); //최종연산
 
-        IntStream intStream2 = IntStream.rangeClosed(1,10); //1,2,3,4
+        IntStream intStream2 = IntStream.range(1,5); //1,2,3,4
         IntStream intStream3 = IntStream.rangeClosed(1,10);//1~10
         //intStream3.filter(i->i%2==0).forEach(System.out::println); //짝수만 호출
         //intStream3.filter(i->i%2==0).filter(i->i%4==0).forEach(System.out::println); //짝수중 4의 배수만 호출
