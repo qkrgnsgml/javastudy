@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -35,7 +36,7 @@ public class StreamEx {
         Stream<File> fileStream = Stream.of(new File("Ex1.java"), new File("Ex1"),
                 new File("Ex1.bak")); //File타입 스트림생성
         Stream<String> filenameStream = fileStream.map(File::getName); //File타입을 String타입으로 변환
-        filenameStream.forEach(System.out::println);//출력
+        //filenameStream.forEach(System.out::println);//출력
 
         String str = "abc";
         Optional<String> optVal1 = Optional.of(str); // 감싸기
@@ -45,9 +46,8 @@ public class StreamEx {
         String str1 = optVal1.get(); //null이면 에러 발생
         String str2 = optVal1.orElse(""); //null이면 ""반환
 
-        Optional<String> optVal4 = Optional.of(null); // nullPointException 발생
+        //Optional<String> optVal4 = Optional.of(null); // nullPointException 발생
         Optional<String> optVal5 = Optional.ofNullable(null);
-
 
 
         Stream<String> strStream7 = Stream.of(new String[]{"a", "b", "c"});
@@ -59,14 +59,74 @@ public class StreamEx {
         Stream<Integer> intStream10 = list.stream();
         //intStream10.distinct().forEach(System.out::println); //1,2,3,4,5
 
-        Stream<String> strStream10= Stream.of(new String[]{"d","B","a", "e","C", "f"});
+        Stream<String> strStream10 = Stream.of(new String[]{"d", "B", "a", "e", "C", "f"});
         strStream10.sorted(); // 기본정렬 대문자 A~Z > 소문자 a~z
-        strStream10.sorted(Comparator.reverseOrder()); // 소문자 z~a, 대문자Z~A
-        strStream10.sorted(String.CASE_INSENSITIVE_ORDER); // 대소문자 관계없이 a~z
-        strStream10.sorted(String.CASE_INSENSITIVE_ORDER.reversed());// 대소문자 관계없이 z~a
+        //strStream10.sorted(Comparator.reverseOrder()); // 소문자 z~a, 대문자Z~A
+        //strStream10.sorted(String.CASE_INSENSITIVE_ORDER); // 대소문자 관계없이 a~z
+        // strStream10.sorted(String.CASE_INSENSITIVE_ORDER.reversed());// 대소문자 관계없이 z~a
 
-        Stream<String[]> strArrStrm = Stream.of(new String[]{"abc","def"},new String[]{"ghj","qwe"});
+        Stream<String[]> strArrStrm = Stream.of(new String[]{"abc", "def"}, new String[]{"ghj", "qwe"});
         strArrStrm.flatMap(Arrays::stream); //문자열하나하나 쪼개진 스트림
-    }
 
+        //Optional<Student> stu = stuStream.filter(s->s.getTotalScore()<=100).findFirst();
+        //Optional<Student> stu = parallelStream.filter(s->s.getTotalScore()<=100).findAny();
+
+
+        OptionalInt reduced =
+                IntStream.range(1, 4) // [1, 2, 3]
+                        .reduce((a, b) -> {
+                            return Integer.sum(a, b);
+                        });
+
+        //List<String> names = stuStream.map(Student::getName).collect(Collections.toList());
+        //ArrayList<String> list = names.stream().collect(Collectors.toCollection(ArrayList::new));
+
+        //Stream<String> strStream11 = Stream.of(new String[]{"d", "B", "a", "e", "C", "f"});
+        //String strPlus = strStream11.collect(Collectors.joining());
+        // String strPlus2 = strStream11.collect(Collectors.joining(","));
+
+//        List<String> names = Arrays.asList("Hoon", "Park", "Heea");
+//        names.stream()
+//                .filter(el -> {
+//                    System.out.println("filter() was called.");
+//                    return el.contains("a");
+//                })
+//                .map(el -> {
+//                    System.out.println("map() was called.");
+//                    return el.toUpperCase();
+//                })
+//                .findAny();
+        List<String> names = Arrays.asList("Hoon", "Park", "Heea");
+        names.stream()
+                .skip(2)
+                .map(el -> {
+                    System.out.println("map() was called.");
+                    return el.toUpperCase();
+                })
+
+                .collect(Collectors.toList());
+//        public Stream collectionToStream (Collection collection)
+//        {
+//            return Optional.ofNullable(collection)
+//                    .map(Collection::stream)
+//                    .orElseGet(Stream::empty);
+//        }
+
+//        public Stream collectionAsStream (Collection collection){
+//            return collection != null ? collection.stream() : Stream.empty();
+//        }
+
+
+        Arrays.stream(new String[]{"a", "abcd", "abcdef"})
+                .filter(abc -> {
+                    System.out.println("Call filter method: " + abc);
+                    return abc.length() > 3;
+                })
+                .map(abc -> {
+                    System.out.println("Call map method: " + abc);
+                    return abc.substring(0, 3);
+                }).findFirst();
+
+
+    }
 }
