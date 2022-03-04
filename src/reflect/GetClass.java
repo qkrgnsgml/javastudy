@@ -7,6 +7,8 @@ public class GetClass {
         Employee employee = new Employee();
 
         Class klass = employee.getClass();
+        //Class klass = Employee.class;
+        //Class klass = Class.forName("reflect.Employee");
 
 
 
@@ -23,6 +25,8 @@ public class GetClass {
                 "Class is abstract: " + Modifier.isAbstract(mods));
 
     }
+
+
 
 }
 
