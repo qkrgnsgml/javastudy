@@ -6,8 +6,8 @@ public class FirstLevel1 {
     public int[] solution(String[] id_list, String[] report, int k) {
         int[] answer = new int[id_list.length];
 
-        Map<String,Integer> userReportCount = new HashMap<>();
-        Map<String,Integer> userEmailCount = new HashMap<>();
+        Map<String,Integer> userReportCount = new LinkedHashMap<>();
+        Map<String,Integer> userEmailCount = new LinkedHashMap<>();
         for (String userId : id_list) {
             userReportCount.put(userId,0);
             userEmailCount.put(userId,0);
