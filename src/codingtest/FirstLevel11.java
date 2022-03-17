@@ -1,6 +1,8 @@
 package codingtest;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FirstLevel11 {
     public String solution(String[] participant, String[] completion) {
@@ -51,5 +53,6 @@ public class FirstLevel11 {
         String[] b = {"leo", "kiki"};
         FirstLevel11 firstLevel11 = new FirstLevel11();
         System.out.println(firstLevel11.solution(a,b));
+
     }
 }
