@@ -5,7 +5,10 @@ public class FirstLevel26 {
         String[] answer = new String[n];
         for(int i=0;i<n;i++){
             String s = Integer.toBinaryString(arr1[i] | arr2[i]);
-            //String.format("%0" + n + "d", s);
+            //s = String.format("%" + n + "s", s);
+            while(s.length()<n){
+                s = "0"+s;
+            }
             s=s.replaceAll("1","#");
             s=s.replaceAll("0"," ");
             answer[i]=s;
