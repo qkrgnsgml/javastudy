@@ -1,8 +1,5 @@
 package codingtest.secondlevel;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 public class SecondLevel12 {
     public String solution(String number, int k) {
         StringBuilder a = new StringBuilder(number);
