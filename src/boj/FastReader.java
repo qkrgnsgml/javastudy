@@ -26,7 +26,7 @@ public class FastReader {
         return st.nextToken();
     }
 
-    int nextInt() {
+    public int nextInt() {
         return Integer.parseInt(next());
     }
 
